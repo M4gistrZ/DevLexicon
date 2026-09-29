@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevLexicon // IT Slang Dictionary for Freshmen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Наивгация -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-terminal logo-icon"></i>
+                <span>Dev<span>Lexicon</span></span>
+            </a>
+            <nav class="nav-links">
+                <a href="#dictionary" class="nav-link active">Словарь</a>
+                <a href="#daily" class="nav-link">Слово дня</a>
+                <a href="#quiz" class="nav-link">Квиз</a>
+                <a href="#about" class="nav-link">О проекте</a>
+            </nav>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn" title="Сменить тему">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button id="submit-btn" class="btn btn-primary-outline">
+                    <i class="fa-solid fa-plus"></i> Предложить термин
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Начальный блок -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <i class="fa-solid fa-graduation-cap"></i> Для первокурсников IT-направлений
+            </div>
+            <h1>Говори на языке айтишников <span class="gradient-text">без переводчика</span></h1>
+            <p class="hero-subtitle">
+                Интерактивный словарь профессионального англоязычного сленга, аббревиатур и рабочих терминов, которые используют разработчики каждый день. Пойми старшекурсников и менторов с полуслова!
+            </p>
+            
+            <!-- Поиск -->
+            <div class="hero-search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="hero-search-input" placeholder="Введите термин, аббревиатуру или перевод...">
+                <button id="hero-search-btn" class="btn btn-primary">Найти</button>
+            </div>
+
+            <!-- Статистика сайта -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="total-terms-count">45+</span>
+                    <span class="stat-label">Терминов и сокращений</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Категорий сленга</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">IT-студентам</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-glow"></div>
+    </section>
+
+    <!-- Основная инфа -->
+    <main class="main-section" id="dictionary">
+        <div class="container">
+
+            <!-- Панелька -->
+            <div class="controls-panel">
+                <!-- По категориям -->
+                <div class="categories-filter" id="category-filters">
+                    <button class="filter-chip active" data-category="all">Все термины</button>
+                    <button class="filter-chip" data-category="slang">🗣 Сленг & Англицизмы</button>
+                    <button class="filter-chip" data-category="abbrev">🔠 Аббревиатуры</button>
+                    <button class="filter-chip" data-category="process">⚙️ Процессы & Agile</button>
+                    <button class="filter-chip" data-category="code">💻 Код & Архитектура</button>
+                    <button class="filter-chip" data-category="culture">🏢 Культура & Мемы</button>
+                </div>
+
+                <!-- По алфавиту -->
+                <div class="alphabet-filter" id="alphabet-filter">
+                    <button class="letter-btn active" data-letter="all">Все</button>
+                </div>
+
+                <div class="filter-subbar">
+                    <div class="search-count" id="results-count">Найдено терминов: <span>0</span></div>
+                    <div class="view-options">
+                        <button id="favorites-filter-btn" class="btn btn-subtle" title="Избранные термины">
+                            <i class="fa-regular fa-bookmark"></i> Избранное (<span id="fav-count">0</span>)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terms-grid" id="terms-grid">
+                <!-- Вставить сюда джиэску -->
+            </div>
+
+            <!-- Пустота -->
+            <div class="empty-state" id="empty-state" style="display: none;">
+                <i class="fa-solid fa-ghost"></i>
+                <h3>Ничего не найдено</h3>
+                <p>По вашему запросу терминов не обнаружено. Попробуйте изменить поисковый запрос или <a href="#" id="open-submit-modal">предложите свой термин</a>!</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Термин дня -->
+    <section class="daily-section" id="daily">
+        <div class="container">
+            <div class="daily-card">
+                <div class="daily-badge"><i class="fa-solid fa-bolt"></i> Термин дня</div>
+                <div class="daily-content" id="daily-card-content">
+                    <!-- Место для джиэски -->
+                </div>
+                <button class="btn btn-primary" id="shuffle-daily-btn">
+                    <i class="fa-solid fa-shuffle"></i> Другой случайный термин
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Квизхзчтоещесюдадобавить -->
+    <section class="quiz-section" id="quiz">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-puzzle-piece"></i> Проверь себя (IT Slang Quiz)</h2>
+                <p>Закрепи знания игровой разминкой: угадай значение сленга</p>
+            </div>
+            
+            <div class="quiz-card" id="quiz-container">
+                <div class="quiz-progress">Вопрос <span id="quiz-current">1</span> из 5</div>
+                <h3 class="quiz-question" id="quiz-question-text">Загрузка вопроса...</h3>
+                <div class="quiz-options" id="quiz-options-grid">
+                    <!-- Место для джиэски -->
+                </div>
+                <div class="quiz-footer" id="quiz-footer" style="display: none;">
+                    <p id="quiz-feedback-text"></p>
+                    <button class="btn btn-primary" id="next-quiz-btn">Следующий вопрос <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О нас -->
+    <section class="about-section" id="about">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2>О проекте <span class="gradient-text">DevLexicon</span></h2>
+                <p>
+                    Первокурсникам IT-направлений часто сложно влиться в тусовку старшекурсников, менторов и разработчиков из-за обилия специфического сленга. Фразы вроде <em>«Сделай ревью PR, залей хотфикс на стейдж, пока таска в бэклоге»</em> звучат как иностранный язык.
+                </p>
+                <p>
+                    Наш проект создан для того, чтобы сократить порог входа в индустрию, объяснить международные аббревиатуры и англицизмы простым и понятным языком с реальными примерами.
+                </p>
+                <div class="about-features">
+                    <div class="feature-badge"><i class="fa-solid fa-check"></i> Интерактивный поиск</div>
+                    <div class="feature-badge"><i class="fa-solid fa-check"></i> Примеры из реальной разработки</div>
+                    <div class="feature-badge"><i class="fa-solid fa-check"></i> Избранное и тесты</div>
+                </div>
+            </div>
+            <!-- Прикольная штука типа линукс, типа я программист, да -->
+            <div class="about-card-banner">
+                <div class="terminal-mockup">
+                    <div class="terminal-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="title">hackathon@eng-team:~</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="prompt">$</span> node init-freshman-success.js</p>
+                        <p class="success">✔ Loading IT vocabulary...</p>
+                        <p class="success">✔ Translating anglicisms...</p>
+                        <p class="success">✔ Freshmen adaptation: 100% successful!</p>
+                        <p><span class="prompt">$</span> <span class="cursor">_</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <i class="fa-solid fa-terminal logo-icon"></i>
+                <span>Dev<span>Lexicon</span></span>
+                <p>Создано с любовью к английскому языку (2026)</p>
+            </div>
+            <div class="footer-links">
+                <a href="#dictionary">Словарь</a>
+                <a href="#daily">Слово дня</a>
+                <a href="#quiz">Квиз</a>
+                <a href="#about">О проекте</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Предложить свою штуку -->
+    <div class="modal" id="submit-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-modal-btn"><i class="fa-solid fa-xmark"></i></button>
+            <h2><i class="fa-solid fa-lightbulb"></i> Предложить свой термин</h2>
+            <p>Знаете крутой IT-термин или сленг? Добавьте в народный словарь первокурсника!</p>
+            
+            <form id="submit-term-form">
+                <div class="form-group">
+                    <label for="term-name">Термин или аббревиатура *</label>
+                    <input type="text" id="term-name" required placeholder="Например: Rubber Duck">
+                </div>
+                <div class="form-group">
+                    <label for="term-category">Категория *</label>
+                    <select id="term-category" required>
+                        <option value="slang">🗣 Сленг & Англицизмы</option>
+                        <option value="abbrev">🔠 Аббревиатуры</option>
+                        <option value="process">⚙️ Процессы & Agile</option>
+                        <option value="code">💻 Код & Архитектура</option>
+                        <option value="culture">🏢 Культура & Мемы</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="term-def">Простое определение *</label>
+                    <textarea id="term-def" required rows="3" placeholder="Что это значит простыми словами..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="term-example">Пример использования в контексте</label>
+                    <input type="text" id="term-example" placeholder="Например: «Пойду поговорю с уточной резиновой уткой»">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Отправить на модерацию</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toast-message">Действие выполнено успешно</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
